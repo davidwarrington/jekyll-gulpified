@@ -21,3 +21,8 @@ Like the repo this is based upon, you will need:
 
 1. Clone this repo, or download it manually
 2. Inside the directory, run `npm install`.
+
+## Usage
+
+1. Run `gulp`.
+2. Enjoy.
