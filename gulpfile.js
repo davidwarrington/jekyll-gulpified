@@ -33,7 +33,7 @@ gulp.task('jekyll-rebuild', ['jekyll-build'], () => {
 /**
  * Wait for Jekyll-build, then launch the Server
  */
-gulp.task('browser-sync', ['sass', 'jekyll-build'], () => {
+gulp.task('browser-sync', ['sass', 'scripts', 'images', 'downloads', 'jekyll-build'], () => {
   browser_sync({
       server: {
           baseDir: '_site'
@@ -66,12 +66,13 @@ gulp.task('scripts', () => {
   return gulp.src([
                config.npm_dir + '/jquery/dist/jquery.min.js',
                config.npm_dir + '/boostrap/js/bootstrap.min.js',
-               'src/assets/js/vendor/*.js',
-               'src/assets/js/*.js'
+               './_assets/js/vendor/*.js',
+               './_assets/js/*.js'
              ])
              .pipe(concat('scripts.js'))
-             .pipe(gulp.dest('dist/assets/js'))
-             .pipe(browser_sync.stream());
+             .pipe(gulp.dest('./_site/assets/js'))
+             .pipe(browser_sync.stream())
+             .pipe(gulp.dest('./assets/js'));
 });
 
 /**
@@ -79,8 +80,19 @@ gulp.task('scripts', () => {
  */
 gulp.task('images', () => {
   return gulp.src('./_assets/img/**/*')
-             .pipe(gulp.dest('./dist/assets/img'))
-             .pipe(browser_sync.stream());
+             .pipe(gulp.dest('./_site/assets/img'))
+             .pipe(browser_sync.stream())
+             .pipe(gulp.dest('./assets/img'));
+});
+
+/**
+ * Move downloads
+ */
+gulp.task('downloads', () => {
+  return gulp.src('./_assets/downloads/**/*')
+             .pipe(gulp.dest('./_site/assets/downloads'))
+             .pipe(browser_sync.stream())
+             .pipe(gulp.dest('./assets/downloads'));
 });
 
 /**
@@ -93,6 +105,7 @@ gulp.task('watch', () => {
   gulp.watch('./_assets/js/*.js', ['scripts']);
   gulp.watch('./_assets/js/**/*.js', ['scripts']);
   gulp.watch('./_assets/img/**/*', ['images']);
+  gulp.watch('./_assets/downloads/**/*', ['downloads']);
   gulp.watch(['*.html', '_layouts/*.html', '_posts/*', '_includes/*'], ['jekyll-rebuild']);
 });
 
