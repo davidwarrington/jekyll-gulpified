@@ -7,6 +7,7 @@ This build uses:
 * gulp-sass
 * gulp-concat
 * browser-sync
+* bootstrap
 
 ## System Preparation
 
