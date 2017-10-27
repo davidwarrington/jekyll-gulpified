@@ -65,7 +65,8 @@ gulp.task('sass', () => {
 gulp.task('scripts', () => {
   return gulp.src([
                config.npm_dir + '/jquery/dist/jquery.min.js',
-               config.npm_dir + '/boostrap/js/bootstrap.min.js',
+               config.npm_dir + '/popper.js/dist/umd/popper.min.js',
+               config.npm_dir + '/bootstrap/dist/js/bootstrap.min.js',
                './_assets/js/vendor/*.js',
                './_assets/js/*.js'
              ])
@@ -106,7 +107,7 @@ gulp.task('watch', () => {
   gulp.watch('./_assets/js/**/*.js', ['scripts']);
   gulp.watch('./_assets/img/**/*', ['images']);
   gulp.watch('./_assets/downloads/**/*', ['downloads']);
-  gulp.watch(['*.md', '*.html', '_layouts/*.html', '_posts/*', '_includes/*'], ['jekyll-rebuild']);
+  gulp.watch(['*.md', '*.html', '_layouts/*.html', '_posts/*', '_portfolio/*', '_includes/*'], ['jekyll-rebuild']);
 });
 
 /**
