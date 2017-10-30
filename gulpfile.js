@@ -107,7 +107,7 @@ gulp.task('watch', () => {
   gulp.watch('./_assets/js/**/*.js', ['scripts']);
   gulp.watch('./_assets/img/**/*', ['images']);
   gulp.watch('./_assets/downloads/**/*', ['downloads']);
-  gulp.watch(['*.md', '*.html', '_layouts/*.html', '_posts/*', '_portfolio/*', '_includes/*'], ['jekyll-rebuild']);
+  gulp.watch(['*.md', '*.html', '_layouts/*.html', '_posts/*', '_includes/*'], ['jekyll-rebuild']);
 });
 
 /**
